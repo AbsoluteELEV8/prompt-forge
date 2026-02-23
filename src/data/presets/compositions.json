@@ -1,0 +1,95 @@
+{
+  "_meta": {
+    "author": "Charley Scholz, JLAI",
+    "coauthor": "Claude Opus 4.5, Claude Code (coding assistant), Cursor (IDE)",
+    "created": "2026-02-23",
+    "updated": "2026-02-23",
+    "description": "Composition presets for creative prompt engineering"
+  },
+  "presets": [
+    {
+      "id": "comp-rule-of-thirds",
+      "name": "Rule of Thirds",
+      "promptFragment": "rule of thirds composition, subject placed at intersection points, balanced asymmetrical framing",
+      "description": "The foundational composition rule — subject placed at the intersection of imaginary grid lines dividing the frame into thirds",
+      "usage": "Use for nearly any subject to create dynamic, balanced compositions that feel natural and engaging"
+    },
+    {
+      "id": "comp-centered",
+      "name": "Centered / Symmetrical",
+      "promptFragment": "centered symmetrical composition, subject perfectly centered, balanced mirror symmetry, powerful focal point",
+      "description": "Subject placed dead center with mirror-like symmetry, creating a sense of order, power, and deliberate formality",
+      "usage": "Use for portraits, architecture, and subjects that convey authority, formality, or meditative stillness"
+    },
+    {
+      "id": "comp-leading-lines",
+      "name": "Leading Lines",
+      "promptFragment": "leading lines composition, converging lines drawing the eye to the subject, strong directional perspective",
+      "description": "Natural or architectural lines in the scene converge to guide the viewer's eye directly to the main subject",
+      "usage": "Use when the environment has strong linear elements (roads, rails, architecture) that can direct attention to the subject"
+    },
+    {
+      "id": "comp-frame-within-frame",
+      "name": "Frame Within Frame",
+      "promptFragment": "frame within a frame composition, subject framed by environmental elements, natural border, layered depth",
+      "description": "Using doorways, windows, arches, or foliage as a natural frame around the subject, adding depth and context",
+      "usage": "Use to add depth and draw attention to the subject by surrounding it with environmental framing elements"
+    },
+    {
+      "id": "comp-negative-space",
+      "name": "Negative Space",
+      "promptFragment": "negative space composition, vast empty area surrounding small subject, minimalist framing, isolation emphasis",
+      "description": "Surrounding the subject with vast empty space to emphasize isolation, scale, or contemplative minimalism",
+      "usage": "Use when you want to convey loneliness, vastness, simplicity, or to give the subject room to breathe"
+    },
+    {
+      "id": "comp-birds-eye",
+      "name": "Bird's Eye View",
+      "promptFragment": "bird's eye view, top-down overhead perspective, looking straight down, flat pattern-like composition",
+      "description": "Looking directly downward from above, transforming the scene into a flat, pattern-like composition",
+      "usage": "Use to reveal patterns, spatial relationships, and abstract qualities not visible from ground level"
+    },
+    {
+      "id": "comp-worms-eye",
+      "name": "Worm's Eye View",
+      "promptFragment": "worm's eye view, extreme low angle looking upward, towering perspective, dramatic sense of scale",
+      "description": "Looking upward from ground level, making subjects appear towering, powerful, and monumentally imposing",
+      "usage": "Use to make subjects appear powerful, imposing, or heroic — great for architecture and dramatic portraits"
+    },
+    {
+      "id": "comp-dutch-angle",
+      "name": "Dutch Angle",
+      "promptFragment": "Dutch angle, tilted camera angle, diagonal horizon line, dynamic tension, disorienting perspective",
+      "description": "Camera tilted on its axis creating a diagonal horizon, injecting tension, unease, and dynamic energy",
+      "usage": "Use to convey psychological tension, action, disorientation, or to add visual energy to static scenes"
+    },
+    {
+      "id": "comp-over-shoulder",
+      "name": "Over the Shoulder",
+      "promptFragment": "over the shoulder composition, foreground shoulder framing, looking past one subject toward another, intimate perspective",
+      "description": "Camera positioned behind one subject's shoulder looking toward the main point of interest, establishing relationship and perspective",
+      "usage": "Use for conversations, revealing what a character sees, or establishing spatial relationships between subjects"
+    },
+    {
+      "id": "comp-close-up",
+      "name": "Close-Up Detail",
+      "promptFragment": "extreme close-up detail shot, tightly cropped, filling the frame with texture and detail, macro-level intimacy",
+      "description": "Tight framing that fills the entire image with a single detail, revealing texture and nuance invisible at normal distance",
+      "usage": "Use to highlight texture, emotion (facial close-ups), or intricate details that tell a story at micro scale"
+    },
+    {
+      "id": "comp-wide-establishing",
+      "name": "Wide Establishing Shot",
+      "promptFragment": "wide establishing shot, expansive scene-setting composition, full environment visible, subject in context of surroundings",
+      "description": "A broad, scene-setting composition that shows the full environment and establishes the subject within its world",
+      "usage": "Use to open a scene, establish location and context, or convey the full scope and scale of an environment"
+    },
+    {
+      "id": "comp-shallow-dof",
+      "name": "Shallow Depth of Field",
+      "promptFragment": "shallow depth of field, sharp subject with beautifully blurred background, strong bokeh, subject isolation",
+      "description": "Razor-thin focus plane keeps only the subject sharp while the background dissolves into creamy bokeh blur",
+      "usage": "Use to isolate the subject from a busy or distracting background, creating a professional, cinematic look"
+    }
+  ]
+}

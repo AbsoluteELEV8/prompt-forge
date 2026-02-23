@@ -1,0 +1,67 @@
+{
+  "_meta": {
+    "author": "Charley Scholz, JLAI",
+    "coauthor": "Claude Opus 4.5, Claude Code (coding assistant), Cursor (IDE)",
+    "created": "2026-02-23",
+    "updated": "2026-02-23",
+    "description": "Aspect ratio presets with platform compatibility"
+  },
+  "presets": [
+    {
+      "id": "ar-1-1",
+      "name": "Square",
+      "value": "1:1",
+      "description": "Equal width and height, ideal for social media posts and profile images",
+      "platforms": ["midjourney", "stable-diffusion", "firefly", "nano-banana", "grok"]
+    },
+    {
+      "id": "ar-16-9",
+      "name": "Widescreen",
+      "value": "16:9",
+      "description": "Standard widescreen display ratio, great for landscapes and cinematic shots",
+      "platforms": ["midjourney", "stable-diffusion", "runway", "kling", "firefly", "veo3", "nano-banana"]
+    },
+    {
+      "id": "ar-9-16",
+      "name": "Vertical / Mobile",
+      "value": "9:16",
+      "description": "Portrait orientation optimized for mobile screens and stories",
+      "platforms": ["midjourney", "stable-diffusion", "runway", "kling", "firefly", "veo3", "nano-banana"]
+    },
+    {
+      "id": "ar-4-3",
+      "name": "Standard",
+      "value": "4:3",
+      "description": "Classic display ratio used in traditional photography and older screens",
+      "platforms": ["midjourney", "stable-diffusion", "firefly", "nano-banana"]
+    },
+    {
+      "id": "ar-2.39-1",
+      "name": "Cinematic Anamorphic",
+      "value": "2.39:1",
+      "description": "Ultra-wide cinematic ratio used in Hollywood blockbusters for epic, immersive framing",
+      "platforms": ["midjourney", "stable-diffusion", "runway"]
+    },
+    {
+      "id": "ar-3-2",
+      "name": "Classic Photo",
+      "value": "3:2",
+      "description": "Traditional 35mm film ratio, the standard for professional photography",
+      "platforms": ["midjourney", "stable-diffusion", "firefly", "nano-banana", "grok"]
+    },
+    {
+      "id": "ar-21-9",
+      "name": "Ultrawide",
+      "value": "21:9",
+      "description": "Panoramic ultrawide ratio for immersive desktop wallpapers and banners",
+      "platforms": ["midjourney", "stable-diffusion"]
+    },
+    {
+      "id": "ar-4-5",
+      "name": "Instagram Portrait",
+      "value": "4:5",
+      "description": "Optimized vertical ratio for Instagram feed posts, maximizes screen real estate",
+      "platforms": ["midjourney", "stable-diffusion", "firefly", "nano-banana"]
+    }
+  ]
+}

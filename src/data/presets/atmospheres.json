@@ -1,0 +1,123 @@
+{
+  "_meta": {
+    "author": "Charley Scholz, JLAI",
+    "coauthor": "Claude Opus 4.5, Claude Code (coding assistant), Cursor (IDE)",
+    "created": "2026-02-23",
+    "updated": "2026-02-23",
+    "description": "Atmosphere and mood presets for creative prompt engineering"
+  },
+  "presets": [
+    {
+      "id": "atm-ethereal",
+      "name": "Ethereal",
+      "promptFragment": "ethereal atmosphere, otherworldly luminous quality, soft diffused light, delicate and dreamlike",
+      "description": "A transcendent, almost supernatural quality where light seems to glow from within — delicate, luminous, and otherworldly",
+      "emotionalTone": "transcendent, delicate, otherworldly",
+      "visualCues": ["soft glow", "diffused light", "mist or haze", "pale luminous tones", "floating particles"]
+    },
+    {
+      "id": "atm-gritty",
+      "name": "Gritty / Raw",
+      "promptFragment": "gritty raw atmosphere, rough textures, imperfect surfaces, harsh unfiltered reality",
+      "description": "Unflinching realism with rough textures, harsh light, and a sense of unpolished, visceral truth",
+      "emotionalTone": "intense, honest, visceral",
+      "visualCues": ["rough textures", "harsh shadows", "visible grain", "urban decay", "imperfect surfaces"]
+    },
+    {
+      "id": "atm-nostalgic",
+      "name": "Nostalgic",
+      "promptFragment": "nostalgic atmosphere, warm faded tones, vintage quality, bittersweet memory-like feel",
+      "description": "The warm ache of looking back — faded colors, soft focus, and a gentle patina that evokes cherished memories",
+      "emotionalTone": "bittersweet, warm, wistful",
+      "visualCues": ["warm color shift", "faded tones", "soft vignette", "vintage textures", "golden light"]
+    },
+    {
+      "id": "atm-futuristic",
+      "name": "Futuristic",
+      "promptFragment": "futuristic atmosphere, sleek advanced technology, clean lines, holographic elements, sci-fi aesthetic",
+      "description": "A forward-looking vision of advanced technology — clean surfaces, holographic displays, and impossibly sleek design",
+      "emotionalTone": "awe, wonder, anticipation",
+      "visualCues": ["clean geometry", "holographic displays", "neon accents", "reflective surfaces", "advanced technology"]
+    },
+    {
+      "id": "atm-dreamlike",
+      "name": "Dreamlike",
+      "promptFragment": "dreamlike atmosphere, surreal blurred edges, floating elements, logic-defying composition, subconscious imagery",
+      "description": "The fluid logic of dreams — shifting perspectives, impossible juxtapositions, and a sense of being between worlds",
+      "emotionalTone": "surreal, fluid, subconscious",
+      "visualCues": ["blurred boundaries", "impossible physics", "morphing forms", "soft focus transitions", "floating elements"]
+    },
+    {
+      "id": "atm-dystopian",
+      "name": "Dystopian",
+      "promptFragment": "dystopian atmosphere, oppressive decayed environment, industrial ruins, bleak sky, societal collapse",
+      "description": "A world gone wrong — oppressive skies, crumbling infrastructure, and the haunting remains of a fallen civilization",
+      "emotionalTone": "oppressive, bleak, foreboding",
+      "visualCues": ["industrial decay", "polluted skies", "crumbling structures", "surveillance elements", "muted desaturated palette"]
+    },
+    {
+      "id": "atm-serene",
+      "name": "Serene / Peaceful",
+      "promptFragment": "serene peaceful atmosphere, tranquil stillness, gentle light, harmonious natural elements, quiet beauty",
+      "description": "Deep calm and harmony — still water, gentle light, and a profound sense of peace that invites contemplation",
+      "emotionalTone": "calm, peaceful, harmonious",
+      "visualCues": ["still water", "gentle light", "open space", "soft colors", "natural elements"]
+    },
+    {
+      "id": "atm-chaotic",
+      "name": "Chaotic",
+      "promptFragment": "chaotic atmosphere, explosive energy, swirling motion, clashing elements, sensory overload",
+      "description": "Overwhelming, high-energy turbulence — colliding forces, sensory overload, and barely contained visual mayhem",
+      "emotionalTone": "overwhelming, frantic, explosive",
+      "visualCues": ["motion blur", "clashing colors", "fragmented elements", "multiple focal points", "explosive energy"]
+    },
+    {
+      "id": "atm-intimate",
+      "name": "Intimate",
+      "promptFragment": "intimate atmosphere, close personal space, warm soft lighting, shallow depth of field, vulnerable closeness",
+      "description": "The warmth of personal proximity — tight framing, soft light, and a sense of vulnerable emotional closeness",
+      "emotionalTone": "tender, vulnerable, personal",
+      "visualCues": ["close framing", "warm tones", "soft lighting", "shallow DOF", "personal space"]
+    },
+    {
+      "id": "atm-epic",
+      "name": "Epic / Grand",
+      "promptFragment": "epic grand atmosphere, vast sweeping scale, dramatic sky, monumental composition, awe-inspiring grandeur",
+      "description": "Scale beyond comprehension — towering landscapes, dramatic skies, and compositions that make the viewer feel small",
+      "emotionalTone": "awe, grandeur, triumph",
+      "visualCues": ["vast scale", "dramatic sky", "towering elements", "wide angle", "small human figures for scale"]
+    },
+    {
+      "id": "atm-mysterious",
+      "name": "Mysterious",
+      "promptFragment": "mysterious atmosphere, obscured details, deep shadows, fog and mist, hidden elements, unknown presence",
+      "description": "What lurks just beyond sight — obscured details, deep shadows, and an unsettling sense that something is hidden",
+      "emotionalTone": "curious, uneasy, intrigued",
+      "visualCues": ["fog and mist", "obscured elements", "deep shadows", "partial reveals", "silhouettes"]
+    },
+    {
+      "id": "atm-whimsical",
+      "name": "Whimsical",
+      "promptFragment": "whimsical atmosphere, playful fantastical elements, bright saturated colors, storybook charm, lighthearted magic",
+      "description": "Pure playful delight — fantastical elements, bright colors, and the infectious charm of a storybook brought to life",
+      "emotionalTone": "playful, joyful, imaginative",
+      "visualCues": ["bright colors", "fantastical elements", "oversized or undersized objects", "storybook quality", "organic curves"]
+    },
+    {
+      "id": "atm-melancholic",
+      "name": "Melancholic",
+      "promptFragment": "melancholic atmosphere, muted desaturated tones, overcast light, solitary elements, quiet sadness",
+      "description": "A quiet, dignified sadness — muted tones, overcast skies, and solitary figures in empty spaces",
+      "emotionalTone": "sad, reflective, lonely",
+      "visualCues": ["muted palette", "overcast sky", "solitary figures", "empty spaces", "rain or grey weather"]
+    },
+    {
+      "id": "atm-energetic",
+      "name": "Energetic",
+      "promptFragment": "energetic atmosphere, dynamic movement, vibrant saturated colors, high contrast, explosive vitality",
+      "description": "Crackling with life force — bold colors, dynamic motion, and an infectious burst of unstoppable energy",
+      "emotionalTone": "excited, dynamic, alive",
+      "visualCues": ["vibrant colors", "motion blur", "dynamic angles", "high contrast", "bold shapes"]
+    }
+  ]
+}

@@ -1,0 +1,107 @@
+{
+  "_meta": {
+    "author": "Charley Scholz, JLAI",
+    "coauthor": "Claude Opus 4.5, Claude Code (coding assistant), Cursor (IDE)",
+    "created": "2026-02-23",
+    "updated": "2026-02-23",
+    "description": "Color palette presets for creative prompt engineering"
+  },
+  "presets": [
+    {
+      "id": "pal-warm-earth",
+      "name": "Warm Earth Tones",
+      "promptFragment": "warm earth tone color palette, terracotta, sienna, ochre, burnt umber, sandy beige",
+      "description": "Grounded natural warmth — the rich browns, tans, and burnt oranges found in clay, soil, and sunbaked landscapes",
+      "hexColors": ["#C1440E", "#D4A373", "#8B5E3C", "#E6C39A", "#5C3A1E"],
+      "mood": "grounded, natural, warm"
+    },
+    {
+      "id": "pal-cool-blues",
+      "name": "Cool Blues",
+      "promptFragment": "cool blue color palette, cerulean, navy, slate blue, powder blue, icy tones",
+      "description": "The calming spectrum of blue — from deep navy depths to icy powder, evoking water, sky, and serenity",
+      "hexColors": ["#1A3A5C", "#4A90D9", "#87CEEB", "#B0D4F1", "#2C3E6B"],
+      "mood": "calm, professional, serene"
+    },
+    {
+      "id": "pal-monochrome",
+      "name": "Monochrome",
+      "promptFragment": "monochrome color palette, single hue variations, tonal range from light to dark, unified color scheme",
+      "description": "Variations of a single hue from lightest tint to darkest shade, creating elegant tonal unity",
+      "hexColors": ["#1A1A1A", "#4D4D4D", "#808080", "#B3B3B3", "#E6E6E6"],
+      "mood": "elegant, focused, sophisticated"
+    },
+    {
+      "id": "pal-pastel",
+      "name": "Pastel",
+      "promptFragment": "pastel color palette, soft muted tones, light and airy, gentle lavender mint peach and cream",
+      "description": "Soft, desaturated tints — gentle and soothing colors that feel light, airy, and approachable",
+      "hexColors": ["#FFB5C2", "#B5D8FF", "#C3F0CA", "#F0D5FF", "#FFF1B5"],
+      "mood": "gentle, soft, approachable"
+    },
+    {
+      "id": "pal-neon",
+      "name": "Neon / Vibrant",
+      "promptFragment": "neon vibrant color palette, electric cyan, hot magenta, vivid yellow, fluorescent intensity, maximum saturation",
+      "description": "Maximum visual impact — electric, fluorescent colors at extreme saturation that demand attention",
+      "hexColors": ["#FF00FF", "#00FFFF", "#FF3F00", "#39FF14", "#FFFF00"],
+      "mood": "energetic, bold, electric"
+    },
+    {
+      "id": "pal-muted",
+      "name": "Muted / Desaturated",
+      "promptFragment": "muted desaturated color palette, washed-out tones, low saturation, dusty faded hues, subdued palette",
+      "description": "Colors with the volume turned down — desaturated, dusty, and contemplative, like a scene viewed through morning fog",
+      "hexColors": ["#8B8178", "#A3967E", "#7B8F8A", "#9E8B9C", "#B5A68E"],
+      "mood": "contemplative, understated, vintage"
+    },
+    {
+      "id": "pal-complementary-teal-orange",
+      "name": "Complementary (Orange-Teal)",
+      "promptFragment": "orange and teal complementary color palette, warm highlights against cool shadows, cinematic color grading",
+      "description": "Hollywood's favorite color grade — warm orange skin tones against cool teal shadows, creating maximum visual separation",
+      "hexColors": ["#E87A1E", "#F5B041", "#1ABC9C", "#2C8C99", "#17495E"],
+      "mood": "cinematic, dynamic, high-contrast"
+    },
+    {
+      "id": "pal-analogous-warm",
+      "name": "Analogous Warm",
+      "promptFragment": "warm analogous color palette, reds oranges and yellows, harmonious warm spectrum, sunset tones",
+      "description": "Adjacent warm hues on the color wheel — reds flowing into oranges into golds, like a sunset in full glory",
+      "hexColors": ["#C0392B", "#E74C3C", "#E67E22", "#F39C12", "#F1C40F"],
+      "mood": "passionate, energetic, fiery"
+    },
+    {
+      "id": "pal-analogous-cool",
+      "name": "Analogous Cool",
+      "promptFragment": "cool analogous color palette, blues purples and teals, harmonious cool spectrum, twilight tones",
+      "description": "Adjacent cool hues on the color wheel — blues bleeding into purples into teals, like a twilight sky",
+      "hexColors": ["#2E4057", "#3498DB", "#8E44AD", "#1ABC9C", "#5B2C6F"],
+      "mood": "mysterious, contemplative, twilight"
+    },
+    {
+      "id": "pal-duotone",
+      "name": "Duotone",
+      "promptFragment": "duotone color palette, image rendered in only two contrasting colors, bold graphic effect, high visual impact",
+      "description": "The entire image expressed through just two contrasting colors, creating a bold, graphic, poster-like effect",
+      "hexColors": ["#1A0533", "#FF6B35", "#2D1B69", "#FF9F1C", "#0D0221"],
+      "mood": "bold, graphic, striking"
+    },
+    {
+      "id": "pal-sepia",
+      "name": "Sepia",
+      "promptFragment": "sepia tone palette, warm brown monochrome, antique photograph feel, aged paper tones, vintage warmth",
+      "description": "The warm brownish tone of aged photographs — instantly transporting the viewer to another era",
+      "hexColors": ["#704214", "#A0522D", "#C19A6B", "#DEB887", "#F5E6C8"],
+      "mood": "antique, timeless, nostalgic"
+    },
+    {
+      "id": "pal-high-contrast-bw",
+      "name": "High Contrast B&W",
+      "promptFragment": "high contrast black and white, pure blacks and bright whites, minimal midtones, dramatic monochrome",
+      "description": "Pure blacks and whites with crushed midtones — maximum graphic impact through dramatic tonal extremes",
+      "hexColors": ["#000000", "#1A1A1A", "#808080", "#E5E5E5", "#FFFFFF"],
+      "mood": "dramatic, stark, powerful"
+    }
+  ]
+}

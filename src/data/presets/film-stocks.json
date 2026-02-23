@@ -1,0 +1,143 @@
+{
+  "_meta": {
+    "author": "Charley Scholz, JLAI",
+    "coauthor": "Claude Opus 4.5, Claude Code (coding assistant), Cursor (IDE)",
+    "created": "2026-02-23",
+    "updated": "2026-02-23",
+    "description": "Film stock presets for creative prompt engineering"
+  },
+  "presets": [
+    {
+      "id": "film-portra-400",
+      "name": "Kodak Portra 400",
+      "promptFragment": "Kodak Portra 400 film stock, soft pastel tones, natural skin rendering, fine grain, warm highlights",
+      "description": "The gold standard portrait film — renowned for exceptionally flattering skin tones, soft pastel palette, and fine grain",
+      "iso": 400,
+      "characteristics": {
+        "grain": "fine",
+        "colorProfile": "warm pastels, muted earth tones, natural skin rendering",
+        "contrastLevel": "low-medium"
+      }
+    },
+    {
+      "id": "film-velvia-50",
+      "name": "Fuji Velvia 50",
+      "promptFragment": "Fuji Velvia 50 slide film, hyper-saturated vivid colors, ultra-fine grain, deep contrast, rich blues and greens",
+      "description": "Legendary slide film famous for its extreme color saturation, vivid blues and greens, and razor-sharp detail",
+      "iso": 50,
+      "characteristics": {
+        "grain": "ultra-fine",
+        "colorProfile": "hyper-saturated, vivid greens and blues, deep reds, punchy color",
+        "contrastLevel": "high"
+      }
+    },
+    {
+      "id": "film-cinestill-800t",
+      "name": "CineStill 800T",
+      "promptFragment": "CineStill 800T film, tungsten-balanced, characteristic red halation around highlights, cinematic night tones",
+      "description": "Repurposed cinema film stock with a signature red halation glow around bright light sources, perfect for night photography",
+      "iso": 800,
+      "characteristics": {
+        "grain": "medium-heavy",
+        "colorProfile": "tungsten-balanced, cool blues, red halation halos around highlights, cinematic teal-orange",
+        "contrastLevel": "medium"
+      }
+    },
+    {
+      "id": "film-kodachrome",
+      "name": "Kodachrome",
+      "promptFragment": "Kodachrome film, rich saturated warm colors, deep shadows, iconic mid-century color palette, sharp detail",
+      "description": "The legendary Kodak slide film that defined a generation of photography — rich, warm, saturated colors with deep blacks",
+      "iso": 64,
+      "characteristics": {
+        "grain": "fine",
+        "colorProfile": "rich warm saturation, deep reds and yellows, neutral shadows, iconic vintage color",
+        "contrastLevel": "medium-high"
+      }
+    },
+    {
+      "id": "film-hp5-plus",
+      "name": "Ilford HP5 Plus (B&W)",
+      "promptFragment": "Ilford HP5 Plus black and white film, rich tonal range, visible grain texture, deep blacks, classic monochrome",
+      "description": "Versatile high-speed black and white film with a beautiful tonal range, pleasing grain structure, and deep rich blacks",
+      "iso": 400,
+      "characteristics": {
+        "grain": "medium",
+        "colorProfile": "black and white, full tonal range, rich midtones, deep blacks",
+        "contrastLevel": "medium"
+      }
+    },
+    {
+      "id": "film-ektar-100",
+      "name": "Kodak Ektar 100",
+      "promptFragment": "Kodak Ektar 100 film, ultra-fine grain, vivid saturated color, high sharpness, punchy contrast",
+      "description": "The world's finest grain color negative film — ultra-sharp with vivid, saturated colors and excellent contrast",
+      "iso": 100,
+      "characteristics": {
+        "grain": "ultra-fine",
+        "colorProfile": "vivid saturated color, punchy reds and blues, clean highlights, vibrant palette",
+        "contrastLevel": "high"
+      }
+    },
+    {
+      "id": "film-bleach-bypass",
+      "name": "Bleach Bypass",
+      "promptFragment": "bleach bypass film processing, desaturated muted colors, increased contrast, silver-metallic sheen, gritty look",
+      "description": "Skipping the bleach step in film processing yields a distinctive high-contrast, desaturated, metallic look popular in cinema",
+      "iso": null,
+      "characteristics": {
+        "grain": "heavy",
+        "colorProfile": "desaturated muted tones, silver-metallic overlay, reduced color intensity",
+        "contrastLevel": "very high"
+      }
+    },
+    {
+      "id": "film-cross-processed",
+      "name": "Cross-Processed",
+      "promptFragment": "cross-processed film, shifted unpredictable colors, strong color cast, high saturation, experimental look",
+      "description": "Deliberately processing film in the wrong chemicals produces wild color shifts, unexpected tonal changes, and a surreal palette",
+      "iso": null,
+      "characteristics": {
+        "grain": "medium",
+        "colorProfile": "shifted color spectrum, strong cyan-yellow or magenta-green casts, unpredictable palette",
+        "contrastLevel": "high"
+      }
+    },
+    {
+      "id": "film-pro-400h",
+      "name": "Fuji Pro 400H",
+      "promptFragment": "Fuji Pro 400H film, soft pastel palette, gentle highlights, smooth skin tones, subtle cool undertone",
+      "description": "Beloved portrait and wedding film known for its delicate pastel palette, soft highlights, and slightly cool undertones",
+      "iso": 400,
+      "characteristics": {
+        "grain": "fine",
+        "colorProfile": "soft pastels, cool undertones, gentle highlights, airy feel, delicate skin rendering",
+        "contrastLevel": "low"
+      }
+    },
+    {
+      "id": "film-tri-x-400",
+      "name": "Kodak Tri-X 400 (B&W)",
+      "promptFragment": "Kodak Tri-X 400 black and white film, dramatic contrast, pronounced grain, gritty photojournalism look",
+      "description": "The quintessential photojournalism film — punchy contrast, distinctive grain, and a gutsy look that defined street photography",
+      "iso": 400,
+      "characteristics": {
+        "grain": "medium-heavy",
+        "colorProfile": "black and white, punchy contrast, bright highlights, crushed shadows, gritty texture",
+        "contrastLevel": "high"
+      }
+    },
+    {
+      "id": "film-instant-polaroid",
+      "name": "Instant Film / Polaroid",
+      "promptFragment": "instant Polaroid film, faded soft colors, low contrast, warm vintage tint, dreamy imperfections",
+      "description": "The nostalgic instant film aesthetic — slightly faded, warm, imperfect, and utterly charming",
+      "iso": 640,
+      "characteristics": {
+        "grain": "medium",
+        "colorProfile": "faded warm tones, reduced saturation, slight color shifts, dreamy vintage feel",
+        "contrastLevel": "low"
+      }
+    }
+  ]
+}

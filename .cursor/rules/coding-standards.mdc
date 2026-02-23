@@ -1,0 +1,158 @@
+---
+alwaysApply: true
+description: "TypeScript coding standards, naming conventions, error handling, and Zustand patterns for PromptForge"
+globs: ["**/*.ts", "**/*.tsx"]
+---
+
+# Coding Standards
+
+## TypeScript Strict Mode
+
+- `strict: true` is non-negotiable — never add `// @ts-ignore` or `// @ts-expect-error` without a linked issue
+- **No `any` type** — use `unknown` with type guards when the shape is genuinely dynamic
+- Prefer `interface` for object shapes that may be extended; use `type` for unions, intersections, and mapped types
+- All function parameters and return types must be explicitly typed (no implicit inference on exports)
+- Use `as const` for literal tuples and fixed arrays instead of type assertions
+
+## Functional Components
+
+```typescript
+// Correct — typed props interface, explicit return
+interface PromptCardProps {
+  title: string;
+  description: string;
+  onSelect: (id: string) => void;
+}
+
+export function PromptCard({ title, description, onSelect }: PromptCardProps) {
+  return ( /* JSX */ );
+}
+```
+
+- No class components
+- Destructure props in the function signature
+- Co-locate the props interface directly above the component in the same file
+- Use `React.ReactNode` for children, not `React.ReactElement`
+
+## Zustand Store Patterns
+
+```typescript
+import { create } from 'zustand';
+
+interface RefineState {
+  userPrompt: string;
+  refinedPrompt: string | null;
+  isRefining: boolean;
+  setUserPrompt: (prompt: string) => void;
+  startRefinement: () => Promise<void>;
+  reset: () => void;
+}
+
+export const useRefineStore = create<RefineState>((set, get) => ({
+  userPrompt: '',
+  refinedPrompt: null,
+  isRefining: false,
+  setUserPrompt: (prompt) => set({ userPrompt: prompt }),
+  startRefinement: async () => {
+    set({ isRefining: true });
+    try {
+      // ... refinement logic
+    } finally {
+      set({ isRefining: false });
+    }
+  },
+  reset: () => set({ userPrompt: '', refinedPrompt: null, isRefining: false }),
+}));
+```
+
+- One store per domain concern (refine, presets, platform, ui)
+- Store files live in `src/store/`
+- Name stores `use<Domain>Store`
+- Always type the full state interface — never rely on inference for store shape
+- Use `get()` inside actions to read current state; use `set()` for updates
+- Keep actions inside the store — no external mutation
+
+## Import Ordering
+
+Group imports in this exact order, separated by blank lines:
+
+```typescript
+// 1. React / React DOM
+import { useState, useCallback } from 'react';
+
+// 2. Next.js
+import { useRouter } from 'next/navigation';
+
+// 3. Third-party libraries
+import { clsx } from 'clsx';
+import { Loader2 } from 'lucide-react';
+
+// 4. Local modules (components, lib, store, data)
+import { Button } from '@/components/ui/button';
+import { useRefineStore } from '@/store/refine-store';
+import { formatPrompt } from '@/lib/prompt-builder';
+
+// 5. Types (type-only imports last)
+import type { PlatformAdapter } from '@/lib/platform-adapters';
+import type { Preset } from '@/data/presets';
+```
+
+- Use `@/` path alias for all local imports (maps to `src/`)
+- Use `import type` for type-only imports — never import types as values
+
+## File Naming Conventions
+
+| Entity | Convention | Example |
+|--------|-----------|---------|
+| Files & directories | kebab-case | `refine-engine.ts`, `platform-adapters/` |
+| React components | PascalCase export, kebab-case file | `prompt-card.tsx` → `export function PromptCard` |
+| Stores | camelCase file, hook name | `refine-store.ts` → `useRefineStore` |
+| Types/Interfaces | PascalCase | `PlatformAdapter`, `PresetCategory` |
+| Constants | UPPER_SNAKE_CASE | `MAX_PROMPT_LENGTH`, `DEFAULT_ASPECT_RATIO` |
+| Utility functions | camelCase | `formatPrompt`, `validateAdapter` |
+
+## Error Handling
+
+### API Routes
+
+```typescript
+export async function POST(request: Request) {
+  try {
+    const body = await request.json();
+    // ... business logic
+    return Response.json({ data: result });
+  } catch (error) {
+    if (error instanceof ValidationError) {
+      return Response.json({ error: error.message }, { status: 400 });
+    }
+    return Response.json(
+      { error: 'Internal server error' },
+      { status: 500 }
+    );
+  }
+}
+```
+
+### LLM Calls
+
+- Always wrap Claude SDK calls in try/catch
+- Distinguish between rate-limit errors (retry with backoff) and content errors (surface to user)
+- Set reasonable timeouts — don't let a hung LLM call block the UI indefinitely
+- Return structured error objects, not thrown strings
+
+### Client Components
+
+- Use error boundaries around major UI sections
+- Show user-friendly error states — never expose raw error messages or stack traces
+- Provide retry actions where appropriate (especially for network/LLM failures)
+
+### General Rules
+
+- Never swallow errors silently — at minimum, log them
+- Use discriminated unions for result types when a function can fail:
+
+```typescript
+type RefineResult =
+  | { success: true; prompt: string }
+  | { success: false; error: string };
+```

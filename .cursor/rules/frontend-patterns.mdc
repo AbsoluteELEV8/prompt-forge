@@ -1,0 +1,158 @@
+---
+alwaysApply: true
+description: "Next.js 15 App Router, shadcn/ui, Tailwind CSS, responsive design, and accessibility patterns for PromptForge"
+globs: ["**/*.tsx", "**/*.css"]
+---
+
+# Frontend Patterns
+
+## Next.js 15 App Router Conventions
+
+### Route Structure
+
+```
+src/app/
+├── layout.tsx          Root layout (fonts, providers, global styles)
+├── page.tsx            Home / main dashboard
+├── globals.css         Tailwind directives + custom properties
+└── api/
+    └── refine/
+        └── route.ts    POST endpoint for prompt refinement
+```
+
+- Every route segment gets its own directory with `page.tsx`
+- Use `layout.tsx` for shared UI that persists across child routes
+- Use `loading.tsx` for streaming Suspense boundaries
+- Use `error.tsx` for route-level error boundaries
+- API routes use the Route Handler pattern (`route.ts` with named HTTP method exports)
+
+### Server vs Client Components
+
+**Default to Server Components.** Only add `'use client'` when the component needs:
+
+- Event handlers (`onClick`, `onChange`, `onSubmit`)
+- React hooks (`useState`, `useEffect`, `useRef`, Zustand stores)
+- Browser-only APIs (`window`, `localStorage`, `IntersectionObserver`)
+- Third-party client-only libraries
+
+**Patterns:**
+
+```
+Server Component (default)     Client Component ('use client')
+─────────────────────────      ───────────────────────────────
+Data fetching                  Interactive forms
+Static layout                  State management (Zustand)
+Metadata generation            Animated transitions
+Rendering presets list         Prompt input / Q&A flow
+```
+
+- **Lift `'use client'` as low as possible** — wrap only the interactive leaf, not the whole page
+- Pass server-fetched data as props to client components; don't re-fetch on the client
+- Use `React.Suspense` with server components for streaming
+
+### Data Fetching
+
+- Server components fetch directly (no `useEffect`)
+- Client-side mutations use API routes (`/api/refine`)
+- Zustand stores hold client-side UI state — not duplicated server data
+
+## shadcn/ui Component Usage
+
+- Install components via CLI: `npx shadcn@latest add <component>`
+- Components land in `src/components/ui/` — treat them as project-owned code
+- Extend shadcn components by composing them, not by modifying the generated source
+- Use `cn()` (clsx + tailwind-merge) for conditional class merging:
+
+```typescript
+import { cn } from '@/lib/utils';
+
+<Button className={cn('w-full', isActive && 'ring-2 ring-primary')} />
+```
+
+- Preferred components for PromptForge UI:
+
+| UI Element | shadcn Component |
+|-----------|-----------------|
+| Prompt input | `Textarea` + `Label` |
+| Platform selector | `Select` or `ToggleGroup` |
+| Preset controls | `Slider`, `Switch`, `RadioGroup` |
+| Q&A cards | `Card` + `CardHeader` + `CardContent` |
+| Output display | `Card` with copy button |
+| Navigation | `Tabs` |
+| Loading states | `Skeleton` |
+| Notifications | `Toast` / `Sonner` |
+
+## Tailwind CSS
+
+### Utility-First Approach
+
+- Write styles as utility classes — no custom CSS unless absolutely necessary
+- Use `@apply` sparingly and only in `globals.css` for truly global patterns
+- Prefer semantic color tokens (`bg-primary`, `text-muted-foreground`) over raw values
+- Group utilities logically: layout → spacing → sizing → typography → colors → effects
+
+```tsx
+<div className="flex flex-col gap-4 p-6 max-w-2xl mx-auto rounded-lg bg-card text-card-foreground shadow-sm">
+```
+
+### Design Tokens
+
+Use CSS custom properties defined by shadcn/ui theming:
+
+```
+--background, --foreground
+--primary, --primary-foreground
+--secondary, --secondary-foreground
+--muted, --muted-foreground
+--accent, --accent-foreground
+--destructive, --destructive-foreground
+--card, --card-foreground
+--border, --input, --ring
+```
+
+Dark mode support via `class` strategy — toggle `.dark` on `<html>`.
+
+## Responsive Design
+
+### Breakpoints
+
+| Prefix | Min Width | Target |
+|--------|-----------|--------|
+| (none) | 0px | Mobile first (default) |
+| `sm` | 640px | Large phones / small tablets |
+| `md` | 768px | Tablets |
+| `lg` | 1024px | Laptops |
+| `xl` | 1280px | Desktops |
+| `2xl` | 1536px | Large screens |
+
+### Patterns
+
+- **Mobile-first** — write base styles for mobile, then layer up with `sm:`, `md:`, `lg:`
+- The main dashboard should be a single-column layout on mobile, two-column on `md:`, three-column on `lg:`
+- Prompt input area is always full-width
+- Platform selector wraps naturally on small screens (flex-wrap)
+- Output area uses full viewport width on mobile with horizontal padding
+
+## Accessibility Requirements
+
+### Non-Negotiable
+
+- All interactive elements must be keyboard-accessible (Tab, Enter, Escape, Arrow keys)
+- All images and icons need `alt` text or `aria-label`
+- Form inputs must have associated `<label>` elements (shadcn handles this when using `Label`)
+- Color contrast must meet WCAG 2.1 AA (4.5:1 for normal text, 3:1 for large text)
+- Focus indicators must be visible — never remove `outline` without a replacement
+
+### Component Patterns
+
+- Use semantic HTML (`<main>`, `<nav>`, `<section>`, `<article>`) over generic `<div>`
+- Announce dynamic content changes with `aria-live="polite"` (e.g., refinement results loading)
+- Modals/dialogs must trap focus and return focus on close (shadcn `Dialog` handles this)
+- Use `role="status"` for loading indicators
+- Provide skip-to-content link for keyboard navigation
+
+### Testing
+
+- Tab through the full UI flow without a mouse
+- Verify screen reader announcements for state changes (refinement start, completion, errors)
+- Test with forced-colors mode (Windows High Contrast)

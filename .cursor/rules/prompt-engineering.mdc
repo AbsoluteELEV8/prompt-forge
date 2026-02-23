@@ -1,0 +1,198 @@
+---
+alwaysApply: false
+description: "Prompt refinement patterns, platform adapter contracts, preset structures, and Q&A flow design for PromptForge"
+globs: ["src/lib/**/*.ts", "src/data/presets/**/*.ts", "src/lib/platform-adapters/**/*.ts"]
+---
+
+# Prompt Engineering Domain Rules
+
+## Refine Engine Pipeline
+
+The refine engine (`src/lib/refine-engine.ts`) follows a strict pipeline:
+
+```
+1. INTAKE        → Parse raw user input, detect intent category (image, video, edit, style transfer)
+2. ANALYZE       → Identify ambiguity gaps (missing subject, style, mood, composition, technical params)
+3. Q&A FLOW      → Generate directed questions to fill gaps (max 3-5 questions per round)
+4. MERGE         → Combine user answers + dashboard preset selections into a structured context object
+5. BUILD         → Feed context to LLM with platform-aware system prompt → produce refined prompt
+6. ADAPT         → Pass refined prompt through the selected PlatformAdapter → platform-native output
+7. PRESENT       → Return formatted output with metadata (token count, parameter summary, warnings)
+```
+
+### Rules
+
+- The refine engine is **stateless per request** — all context is passed in, nothing stored in globals
+- Each pipeline step is a separate pure function that can be tested independently
+- The LLM call happens exactly once per refinement cycle (step 5) — no multi-turn LLM loops
+- If the user skips Q&A, the engine still refines using only the raw input + active presets
+- Never inject platform-specific syntax during the BUILD step — that's the adapter's job
+
+## Platform Adapter Interface
+
+Every platform adapter must implement this interface:
+
+```typescript
+interface PlatformAdapter {
+  /** Unique platform identifier (kebab-case) */
+  readonly id: string;
+
+  /** Human-readable display name */
+  readonly displayName: string;
+
+  /** Platform category: 'image' | 'video' | 'edit' */
+  readonly category: 'image' | 'video' | 'edit';
+
+  /** Supported output parameters (aspect ratios, durations, etc.) */
+  readonly capabilities: PlatformCapabilities;
+
+  /**
+   * Transform a refined prompt into platform-native format.
+   * Must be a pure function — no side effects, no API calls.
+   */
+  adapt(input: RefinedPrompt, options: AdapterOptions): PlatformOutput;
+
+  /**
+   * Validate that the given options are within platform constraints.
+   * Returns validation errors or an empty array if valid.
+   */
+  validate(options: AdapterOptions): ValidationError[];
+}
+
+interface PlatformCapabilities {
+  aspectRatios: string[];
+  maxPromptLength: number;
+  supportsNegativePrompt: boolean;
+  supportsWeights: boolean;
+  customParameters: ParameterDefinition[];
+}
+
+interface PlatformOutput {
+  /** The primary prompt text, formatted for the platform */
+  prompt: string;
+  /** Negative prompt if supported, otherwise null */
+  negativePrompt: string | null;
+  /** Platform-specific parameters as key-value pairs */
+  parameters: Record<string, string | number | boolean>;
+  /** Full copyable output string ready for the platform */
+  formatted: string;
+  /** Warnings about truncation, unsupported features, etc. */
+  warnings: string[];
+}
+```
+
+### Adapter Rules
+
+- Adapters live in `src/lib/platform-adapters/<platform-id>.ts`
+- Each adapter file exports a single `const` implementing `PlatformAdapter`
+- Adapters are registered in `src/lib/platform-adapters/index.ts` via a registry map
+- The `adapt()` function must be **pure** — deterministic output for the same input
+- Never import from one adapter into another — adapters are independent modules
+- Platform-specific prompt syntax (weights, parameters, flags) belongs ONLY inside adapters
+
+## Preset Data Structure
+
+All presets in `src/data/presets/` must follow this shape:
+
+```typescript
+interface Preset {
+  /** Unique ID (kebab-case, prefixed by category) */
+  id: string;
+  /** Display label */
+  label: string;
+  /** Short description shown in the dashboard */
+  description: string;
+  /** Searchable tags */
+  tags: string[];
+  /** Prompt fragment injected during BUILD step */
+  promptFragment: string;
+  /** Platform-specific hints (optional overrides per platform) */
+  platformHints?: Partial<Record<PlatformId, string>>;
+  /** Category this preset belongs to */
+  category: PresetCategory;
+}
+
+type PresetCategory =
+  | 'style'
+  | 'lighting'
+  | 'camera'
+  | 'mood'
+  | 'color-palette'
+  | 'composition'
+  | 'medium'
+  | 'era'
+  | 'quality';
+```
+
+### Preset Rules
+
+- One file per category: `src/data/presets/style.ts`, `src/data/presets/lighting.ts`, etc.
+- Every file exports a typed `const` array: `export const stylePresets: Preset[] = [...]`
+- Preset `promptFragment` values are **platform-agnostic natural language** — the adapter handles syntax
+- Presets can include `platformHints` for platform-specific phrasing, but the generic `promptFragment` is always the primary source
+- IDs are globally unique across all categories
+- All presets must have at least 2 tags for search/filter
+
+## Q&A Flow Patterns
+
+The Q&A system generates contextual questions based on detected ambiguity gaps:
+
+### Question Generation Rules
+
+- Maximum 5 questions per round — respect the user's time
+- Questions are ordered by impact: subject > style > composition > technical
+- Each question provides 3-5 suggested answers plus a free-text option
+- Questions adapt based on the detected intent category:
+
+| Intent | Priority Questions |
+|--------|-------------------|
+| Image generation | Subject detail, art style, aspect ratio, mood |
+| Video generation | Scene description, duration, camera movement, audio |
+| Image editing | What to change, preservation areas, style reference |
+| Style transfer | Source style reference, transfer intensity, preservation |
+
+### Q&A Data Shape
+
+```typescript
+interface QAQuestion {
+  id: string;
+  text: string;
+  context: string;
+  suggestions: string[];
+  allowFreeText: boolean;
+  required: boolean;
+  category: 'subject' | 'style' | 'composition' | 'technical' | 'mood';
+}
+
+interface QAAnswer {
+  questionId: string;
+  value: string;
+  source: 'suggestion' | 'freetext';
+}
+```
+
+- Questions are generated by the refine engine's analyze step, not hardcoded
+- The LLM generates questions based on what's missing from the user's input
+- Previously answered questions are not repeated within the same session
+
+## Output Formatting Standards
+
+Each platform adapter's `formatted` output must be immediately usable — the user should be able to copy and paste it directly into the target platform.
+
+### Per-Platform Formatting
+
+- **Midjourney**: Single-line prompt with parameters appended (`/imagine prompt: <text> --ar 16:9 --v 6 --s 250`)
+- **Stable Diffusion**: Positive prompt with weight syntax `(keyword:1.3)` and separate negative prompt
+- **Runway**: Scene description with motion parameters in structured fields
+- **Kling**: Video prompt with duration and motion directives
+- **Firefly**: Natural language prompt with style reference tags
+- **Veo 3**: Scene description with resolution, duration, audio/dialogue directives, and reference image markers
+- **Nano Banana**: Model selection (V1/Pro V2), prompt with mode-specific parameters (mask-free inpainting, style transfer)
+- **Grok Aurora**: Natural language prompt with aspect ratio selection (3:2, 2:3, 1:1) — placeholder, expand as API details emerge
+
+### Quality Gates
+
+- Refined prompts must be at least 20 words (unless the user explicitly wants minimal)
+- No duplicate adjectives or redundant descriptors in the final output
+- Platform parameter values must be within documented valid ranges
+- Warn the user if the prompt exceeds the platform's max length (truncate gracefully, don't silently cut)

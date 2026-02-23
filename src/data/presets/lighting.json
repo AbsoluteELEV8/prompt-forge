@@ -1,0 +1,123 @@
+{
+  "_meta": {
+    "author": "Charley Scholz, JLAI",
+    "coauthor": "Claude Opus 4.5, Claude Code (coding assistant), Cursor (IDE)",
+    "created": "2026-02-23",
+    "updated": "2026-02-23",
+    "description": "Lighting presets for creative prompt engineering"
+  },
+  "presets": [
+    {
+      "id": "light-golden-hour",
+      "name": "Golden Hour",
+      "promptFragment": "golden hour lighting, warm sunlight casting long shadows, soft amber glow",
+      "description": "The magical window shortly after sunrise or before sunset when light is warm, diffused, and directional",
+      "mood": "warm, romantic, nostalgic",
+      "intensity": "medium"
+    },
+    {
+      "id": "light-rembrandt",
+      "name": "Rembrandt",
+      "promptFragment": "Rembrandt lighting, dramatic triangle of light on cheek, deep shadows on one side",
+      "description": "Classic portrait lighting creating a small triangle of light on the shadowed cheek, named after the Dutch master painter",
+      "mood": "dramatic, classical, dignified",
+      "intensity": "high"
+    },
+    {
+      "id": "light-butterfly",
+      "name": "Butterfly / Paramount",
+      "promptFragment": "butterfly lighting, overhead key light, symmetrical shadow beneath nose, glamorous illumination",
+      "description": "Light positioned directly above and in front of the subject creating a butterfly-shaped shadow under the nose, classic Hollywood glamour technique",
+      "mood": "glamorous, elegant, polished",
+      "intensity": "medium"
+    },
+    {
+      "id": "light-split",
+      "name": "Split",
+      "promptFragment": "split lighting, half face illuminated half in deep shadow, stark contrast",
+      "description": "Light hits exactly one half of the face while the other half remains in shadow, creating a bold 50/50 divide",
+      "mood": "mysterious, intense, conflicted",
+      "intensity": "high"
+    },
+    {
+      "id": "light-rim",
+      "name": "Rim / Edge",
+      "promptFragment": "rim lighting, bright edge light outlining the subject, backlit contour glow",
+      "description": "Light placed behind the subject creating a bright outline or halo effect that separates subject from background",
+      "mood": "heroic, ethereal, striking",
+      "intensity": "high"
+    },
+    {
+      "id": "light-neon",
+      "name": "Neon / Cyberpunk",
+      "promptFragment": "neon lighting, vibrant colored neon glow, cyan and magenta reflections, cyberpunk atmosphere",
+      "description": "Colorful artificial neon lights casting vivid colored reflections, evoking a futuristic urban nightscape",
+      "mood": "futuristic, edgy, electric",
+      "intensity": "high"
+    },
+    {
+      "id": "light-natural-daylight",
+      "name": "Natural Daylight",
+      "promptFragment": "natural daylight, bright even illumination, clear sky ambient light",
+      "description": "Clean, bright, and evenly distributed outdoor light on a clear day",
+      "mood": "fresh, honest, vibrant",
+      "intensity": "medium"
+    },
+    {
+      "id": "light-studio-softbox",
+      "name": "Studio Softbox",
+      "promptFragment": "studio softbox lighting, soft diffused professional illumination, even skin tones",
+      "description": "Professional studio lighting with large softbox diffusers producing smooth, flattering, and controlled illumination",
+      "mood": "professional, clean, controlled",
+      "intensity": "medium"
+    },
+    {
+      "id": "light-harsh-directional",
+      "name": "Harsh Directional",
+      "promptFragment": "harsh directional lighting, strong hard shadows, high contrast single light source",
+      "description": "Undiffused point light source creating sharp, well-defined shadows and extreme contrast",
+      "mood": "bold, unforgiving, raw",
+      "intensity": "high"
+    },
+    {
+      "id": "light-volumetric",
+      "name": "Volumetric / God Rays",
+      "promptFragment": "volumetric lighting, god rays streaming through atmosphere, visible light beams in haze",
+      "description": "Visible shafts of light passing through fog, dust, or openings, creating dramatic beams of illumination",
+      "mood": "divine, awe-inspiring, mystical",
+      "intensity": "high"
+    },
+    {
+      "id": "light-chiaroscuro",
+      "name": "Chiaroscuro",
+      "promptFragment": "chiaroscuro lighting, extreme contrast between light and dark, Renaissance-style dramatic illumination",
+      "description": "The bold contrast technique perfected by Caravaggio — deep blacks against concentrated areas of bright light",
+      "mood": "dramatic, theatrical, intense",
+      "intensity": "high"
+    },
+    {
+      "id": "light-overcast",
+      "name": "Overcast / Diffused",
+      "promptFragment": "overcast diffused lighting, soft even illumination, no harsh shadows, cloudy sky light",
+      "description": "Clouds act as a giant natural softbox, producing shadowless, evenly diffused illumination",
+      "mood": "calm, muted, contemplative",
+      "intensity": "low"
+    },
+    {
+      "id": "light-backlit",
+      "name": "Backlit / Silhouette",
+      "promptFragment": "backlit silhouette lighting, subject against bright background, dark outline, lens flare",
+      "description": "Primary light source behind the subject creating a dark silhouette form against a bright background",
+      "mood": "dramatic, anonymous, cinematic",
+      "intensity": "high"
+    },
+    {
+      "id": "light-candlelight",
+      "name": "Candlelight / Warm Glow",
+      "promptFragment": "candlelight warm glow, soft flickering amber illumination, intimate low-light atmosphere",
+      "description": "Warm, dim, flickering light from candles or similar sources creating an intimate close-range glow",
+      "mood": "intimate, cozy, romantic",
+      "intensity": "low"
+    }
+  ]
+}

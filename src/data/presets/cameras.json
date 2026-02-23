@@ -1,0 +1,115 @@
+{
+  "_meta": {
+    "author": "Charley Scholz, JLAI",
+    "coauthor": "Claude Opus 4.5, Claude Code (coding assistant), Cursor (IDE)",
+    "created": "2026-02-23",
+    "updated": "2026-02-23",
+    "description": "Camera and lens presets for creative prompt engineering"
+  },
+  "presets": [
+    {
+      "id": "cam-35mm",
+      "name": "35mm Standard",
+      "promptFragment": "shot on 35mm lens, natural perspective, versatile field of view",
+      "description": "The workhorse focal length — close to human eye perspective, equally suited for street, documentary, and environmental portraits",
+      "focalLength": "35mm",
+      "characteristics": ["natural perspective", "slight wide angle", "environmental context", "versatile framing"]
+    },
+    {
+      "id": "cam-50mm",
+      "name": "50mm Portrait",
+      "promptFragment": "shot on 50mm lens, natural field of view, classic portrait perspective, subtle background separation",
+      "description": "The 'nifty fifty' — closest to human vision, produces clean natural-looking images with gentle compression",
+      "focalLength": "50mm",
+      "characteristics": ["human-eye perspective", "minimal distortion", "natural bokeh", "classic rendering"]
+    },
+    {
+      "id": "cam-85mm",
+      "name": "85mm Telephoto Portrait",
+      "promptFragment": "shot on 85mm telephoto portrait lens, beautiful background blur, flattering facial compression, creamy bokeh",
+      "description": "The gold standard portrait focal length — flattering compression, gorgeous subject separation, and buttery bokeh",
+      "focalLength": "85mm",
+      "characteristics": ["flattering compression", "shallow depth of field", "creamy bokeh", "subject isolation", "telephoto rendering"]
+    },
+    {
+      "id": "cam-24mm",
+      "name": "24mm Wide Angle",
+      "promptFragment": "shot on 24mm wide angle lens, expansive field of view, dramatic perspective distortion, deep depth of field",
+      "description": "Wide angle perspective that exaggerates spatial depth and captures broad scenes with dramatic foreground emphasis",
+      "focalLength": "24mm",
+      "characteristics": ["wide field of view", "perspective distortion", "deep focus", "dramatic foreground", "spatial exaggeration"]
+    },
+    {
+      "id": "cam-macro",
+      "name": "Macro Lens",
+      "promptFragment": "macro photography, extreme close-up, 1:1 magnification, razor-thin depth of field, intricate detail",
+      "description": "Extreme close-up photography revealing microscopic details invisible to the naked eye, with paper-thin focus planes",
+      "focalLength": "100mm macro",
+      "characteristics": ["extreme magnification", "razor-thin DOF", "intricate detail", "abstract quality", "texture revelation"]
+    },
+    {
+      "id": "cam-tilt-shift",
+      "name": "Tilt-Shift",
+      "promptFragment": "tilt-shift lens effect, selective focus plane, miniature diorama look, blurred edges",
+      "description": "Manipulates the focus plane to create a miniature/toy-like effect or correct architectural perspective distortion",
+      "focalLength": null,
+      "characteristics": ["selective focus band", "miniature effect", "perspective correction", "dreamlike blur", "toy-world aesthetic"]
+    },
+    {
+      "id": "cam-fisheye",
+      "name": "Fisheye",
+      "promptFragment": "fisheye lens, extreme barrel distortion, ultra-wide 180-degree field of view, spherical warping",
+      "description": "Ultra-wide hemispherical lens creating extreme barrel distortion and a 180-degree or greater field of view",
+      "focalLength": "8-16mm",
+      "characteristics": ["barrel distortion", "180-degree FOV", "spherical warping", "surreal perspective", "extreme curvature"]
+    },
+    {
+      "id": "cam-anamorphic",
+      "name": "Anamorphic",
+      "promptFragment": "anamorphic lens, cinematic horizontal lens flares, oval bokeh, widescreen compression, film-like quality",
+      "description": "Cinema-grade lens producing the signature horizontal flares, oval bokeh, and widescreen look of Hollywood films",
+      "focalLength": null,
+      "characteristics": ["horizontal lens flares", "oval bokeh", "widescreen squeeze", "cinematic quality", "breathing effect"]
+    },
+    {
+      "id": "cam-drone",
+      "name": "Drone / Aerial",
+      "promptFragment": "aerial drone photography, bird's eye view, sweeping overhead perspective, vast landscape visible",
+      "description": "Elevated aerial perspective from a drone, revealing patterns, scale, and spatial relationships invisible from ground level",
+      "focalLength": "24-28mm equivalent",
+      "characteristics": ["overhead perspective", "reveals patterns", "vast scale", "topographic view", "dramatic altitude"]
+    },
+    {
+      "id": "cam-gopro",
+      "name": "GoPro POV",
+      "promptFragment": "GoPro POV, ultra-wide action camera perspective, immersive first-person view, barrel distortion, high energy",
+      "description": "First-person point-of-view from an action camera with ultra-wide distortion conveying speed, immersion, and intensity",
+      "focalLength": "14-17mm equivalent",
+      "characteristics": ["first-person POV", "ultra-wide distortion", "immersive feel", "action-oriented", "high energy"]
+    },
+    {
+      "id": "cam-medium-format",
+      "name": "Medium Format",
+      "promptFragment": "medium format camera, exceptional detail and tonal range, shallow depth of field, large sensor rendering",
+      "description": "Larger-than-35mm sensor producing images with unparalleled detail, tonal gradation, and a distinctive three-dimensional quality",
+      "focalLength": "80mm equivalent",
+      "characteristics": ["extraordinary detail", "rich tonal range", "medium format look", "3D pop", "smooth gradation"]
+    },
+    {
+      "id": "cam-pinhole",
+      "name": "Pinhole",
+      "promptFragment": "pinhole camera aesthetic, infinite depth of field, soft overall focus, vignetting, long exposure feel",
+      "description": "Lensless camera producing dreamy, soft-focus images with infinite depth of field and natural vignetting",
+      "focalLength": null,
+      "characteristics": ["infinite depth of field", "soft focus everywhere", "natural vignette", "dreamy quality", "lo-fi aesthetic"]
+    },
+    {
+      "id": "cam-polaroid",
+      "name": "Vintage Polaroid",
+      "promptFragment": "vintage Polaroid instant film, faded colors, soft focus, white border frame, nostalgic warmth, light leaks",
+      "description": "Instant film aesthetic with characteristic faded colors, soft focus, and the iconic white border frame",
+      "focalLength": "106mm equivalent",
+      "characteristics": ["instant film look", "faded palette", "soft focus", "white border", "light leaks", "nostalgic warmth"]
+    }
+  ]
+}

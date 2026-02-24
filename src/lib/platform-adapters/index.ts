@@ -17,6 +17,7 @@ import { fireflyAdapter } from './firefly';
 import { veo3Adapter } from './veo3';
 import { nanoBananaAdapter } from './nano-banana';
 import { grokAdapter } from './grok';
+import { geminiAdapter } from './gemini';
 
 const adapterMap: Record<PlatformId, PlatformAdapter> = {
   'midjourney': midjourneyAdapter,
@@ -27,6 +28,7 @@ const adapterMap: Record<PlatformId, PlatformAdapter> = {
   'veo3': veo3Adapter,
   'nano-banana': nanoBananaAdapter,
   'grok': grokAdapter,
+  'gemini': geminiAdapter,
 };
 
 export function getAdapter(platform: PlatformId): PlatformAdapter {

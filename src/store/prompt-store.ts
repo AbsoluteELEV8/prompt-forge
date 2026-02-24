@@ -4,20 +4,24 @@
  * @author Charley Scholz, ELEV8
  * @coauthor Claude 4.6 Opus, Claude Code (coding assistant), Cursor (IDE)
  * @created 2026-02-23
- * @updated 2026-02-23
+ * @updated 2026-02-24
  */
 
 import { create } from 'zustand';
 import type {
   PlatformId,
+  Preset,
   PresetCategoryId,
   PresetSelection,
   Question,
 } from '@/lib/types';
 
+type CustomPresetsMap = Record<PresetCategoryId, Preset[]>;
+
 interface PromptState {
   userPrompt: string;
   presetSelections: Required<PresetSelection>;
+  customPresets: CustomPresetsMap;
   selectedPlatform: PlatformId;
   refinedPrompt: string | null;
   parameters: Record<string, unknown>;
@@ -29,6 +33,8 @@ interface PromptState {
   setUserPrompt: (input: string) => void;
   togglePreset: (category: PresetCategoryId, presetId: string) => void;
   clearCategoryPresets: (category: PresetCategoryId) => void;
+  addCustomPreset: (category: PresetCategoryId, text: string) => void;
+  removeCustomPreset: (category: PresetCategoryId, presetId: string) => void;
   setSelectedPlatform: (platform: PlatformId) => void;
   forgePrompt: () => Promise<void>;
   setAnswer: (questionId: string, value: string) => void;
@@ -47,9 +53,23 @@ const emptyPresets: Required<PresetSelection> = {
   colorPalettes: [],
 };
 
+const emptyCustomPresets: CustomPresetsMap = {
+  aspectRatios: [],
+  lighting: [],
+  cameras: [],
+  filmStocks: [],
+  atmospheres: [],
+  artStyles: [],
+  compositions: [],
+  colorPalettes: [],
+};
+
+let customIdCounter = 0;
+
 const initialState = {
   userPrompt: '',
   presetSelections: { ...emptyPresets },
+  customPresets: { ...emptyCustomPresets },
   selectedPlatform: 'midjourney' as PlatformId,
   refinedPrompt: null as string | null,
   parameters: {} as Record<string, unknown>,
@@ -62,6 +82,7 @@ const initialState = {
 async function callRefineApi(state: {
   userPrompt: string;
   presetSelections: Required<PresetSelection>;
+  customPresets: CustomPresetsMap;
   selectedPlatform: PlatformId;
   answers: Record<string, string>;
   questions: Question[];
@@ -80,6 +101,7 @@ async function callRefineApi(state: {
     body: JSON.stringify({
       input: state.userPrompt,
       presets: state.presetSelections,
+      customPresets: state.customPresets,
       platform: state.selectedPlatform,
       answers: textKeyedAnswers,
     }),
@@ -120,6 +142,44 @@ export const usePromptStore = create<PromptState>((set, get) => ({
       presetSelections: {
         ...state.presetSelections,
         [category]: [],
+      },
+    })),
+
+  addCustomPreset: (category, text) => {
+    const trimmed = text.trim();
+    if (!trimmed) return;
+
+    const id = `custom-${category}-${++customIdCounter}`;
+    const isAspectRatio = category === 'aspectRatios';
+
+    const preset: Preset = {
+      id,
+      label: trimmed,
+      description: `Custom: ${trimmed}`,
+      ...(isAspectRatio ? { value: trimmed } : { promptFragment: trimmed }),
+    };
+
+    set((state) => ({
+      customPresets: {
+        ...state.customPresets,
+        [category]: [...state.customPresets[category], preset],
+      },
+      presetSelections: {
+        ...state.presetSelections,
+        [category]: [...state.presetSelections[category], id],
+      },
+    }));
+  },
+
+  removeCustomPreset: (category, presetId) =>
+    set((state) => ({
+      customPresets: {
+        ...state.customPresets,
+        [category]: state.customPresets[category].filter((p) => p.id !== presetId),
+      },
+      presetSelections: {
+        ...state.presetSelections,
+        [category]: state.presetSelections[category].filter((id) => id !== presetId),
       },
     })),
 
@@ -185,5 +245,9 @@ export const usePromptStore = create<PromptState>((set, get) => ({
     }
   },
 
-  reset: () => set({ ...initialState, presetSelections: { ...emptyPresets } }),
+  reset: () => set({
+    ...initialState,
+    presetSelections: { ...emptyPresets },
+    customPresets: { ...emptyCustomPresets },
+  }),
 }));

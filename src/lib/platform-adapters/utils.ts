@@ -4,10 +4,10 @@
  * @author Charley Scholz, ELEV8
  * @coauthor Claude 4.6 Opus, Claude Code (coding assistant), Cursor (IDE)
  * @created 2026-02-23
- * @updated 2026-02-23
+ * @updated 2026-02-24
  */
 
-import type { PresetSelection, Preset } from '../types';
+import type { PresetSelection, Preset, PresetCategoryId } from '../types';
 
 import aspectRatioData from '@/data/presets/aspect-ratios.json';
 import lightingData from '@/data/presets/lighting.json';
@@ -30,10 +30,32 @@ const CATEGORY_DATA: Record<string, PresetDataset> = {
   colorPalettes: colorPalettesData as PresetDataset,
 };
 
+// Per-request context for custom presets, set before resolving fragments
+let _customPresetsCtx: Record<PresetCategoryId, Preset[]> | null = null;
+
+/**
+ * Sets the custom presets context for the current resolution cycle.
+ * Called by buildPrompt before adapter.formatPrompt runs.
+ */
+export function setCustomPresetsContext(
+  ctx: Record<PresetCategoryId, Preset[]> | null,
+): void {
+  _customPresetsCtx = ctx;
+}
+
 function findPresetById(category: string, id: string): Preset | undefined {
   const dataset = CATEGORY_DATA[category];
-  if (!dataset) return undefined;
-  return dataset.presets.find((p) => p.id === id);
+  const staticMatch = dataset?.presets.find((p) => p.id === id);
+  if (staticMatch) return staticMatch;
+
+  if (_customPresetsCtx) {
+    const customs = _customPresetsCtx[category as PresetCategoryId];
+    if (customs) {
+      return customs.find((p) => p.id === id);
+    }
+  }
+
+  return undefined;
 }
 
 /**
@@ -82,8 +104,16 @@ export function resolveAspectRatio(
   const arPresets = (aspectRatioData as PresetDataset).presets;
 
   for (const id of selectedIds) {
-    const preset = arPresets.find((p) => p.id === id);
-    const value = preset?.value;
+    // Check static presets first
+    let value: string | undefined;
+    const staticPreset = arPresets.find((p) => p.id === id);
+    if (staticPreset) {
+      value = staticPreset.value;
+    } else if (_customPresetsCtx) {
+      const custom = _customPresetsCtx.aspectRatios?.find((p) => p.id === id);
+      value = custom?.value;
+    }
+
     if (typeof value === 'string' && supported.includes(value)) {
       return value;
     }

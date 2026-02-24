@@ -9,7 +9,9 @@
 
 import Anthropic from '@anthropic-ai/sdk';
 import type {
+  Preset,
   PromptAnalysis,
+  PresetCategoryId,
   PresetSelection,
   PlatformId,
   RefinedPrompt,
@@ -130,9 +132,10 @@ export async function refinePrompt(
   presets: PresetSelection,
   platform: PlatformId,
   answers?: Record<string, string>,
+  customPresets?: Partial<Record<PresetCategoryId, Preset[]>>,
 ): Promise<RefinedPrompt> {
   const analysis = await analyzePrompt(input);
-  const assembledPrompt = buildPrompt(analysis, presets, platform);
+  const assembledPrompt = buildPrompt(analysis, presets, platform, customPresets as Record<PresetCategoryId, Preset[]> | undefined);
 
   const client = getAnthropicClient();
 

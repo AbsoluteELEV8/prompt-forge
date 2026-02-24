@@ -54,7 +54,7 @@ export function PlatformSelector(): React.ReactNode {
   return (
     <div aria-label="Target platform" role="radiogroup">
       <p className="forge-section-title mb-2">Target Platform</p>
-      <div className="flex flex-wrap gap-2">
+      <div className="flex gap-2 overflow-x-auto pb-1 scrollbar-thin">
         {PLATFORMS.map((platform) => {
           const isSelected = selectedPlatform === platform.id;
           return (
@@ -65,7 +65,7 @@ export function PlatformSelector(): React.ReactNode {
               aria-checked={isSelected}
               onClick={() => handleSelect(platform.id)}
               className={cn(
-                'group inline-flex items-center gap-2 rounded-lg border px-3 py-2',
+                'group inline-flex shrink-0 items-center gap-2 rounded-lg border px-3 py-2',
                 'text-sm font-medium transition-all duration-200',
                 isSelected
                   ? 'border-forge-amber-500/60 bg-forge-amber-500/10 text-forge-amber-300 shadow-forge-glow'

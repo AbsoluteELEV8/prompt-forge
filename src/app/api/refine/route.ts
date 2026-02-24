@@ -20,6 +20,7 @@ const VALID_PLATFORMS: PlatformId[] = [
   'veo3',
   'nano-banana',
   'grok',
+  'gemini',
 ];
 
 function isValidPlatform(value: unknown): value is PlatformId {
@@ -66,6 +67,7 @@ export async function POST(request: NextRequest): Promise<NextResponse<RefineRes
       presets,
       body.platform,
       answers,
+      body.customPresets,
     );
 
     return NextResponse.json({

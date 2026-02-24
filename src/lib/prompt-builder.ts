@@ -7,8 +7,9 @@
  * @updated 2026-02-23
  */
 
-import type { PromptAnalysis, PresetSelection, PlatformId } from './types';
+import type { Preset, PromptAnalysis, PresetCategoryId, PresetSelection, PlatformId } from './types';
 import { getAdapter } from './platform-adapters';
+import { setCustomPresetsContext } from './platform-adapters/utils';
 
 /**
  * Builds a base prompt string from the PromptAnalysis before handing it
@@ -48,7 +49,11 @@ export function buildPrompt(
   analysis: PromptAnalysis,
   presets: PresetSelection,
   platform: PlatformId,
+  customPresets?: Record<PresetCategoryId, Preset[]>,
 ): string {
+  if (customPresets) {
+    setCustomPresetsContext(customPresets);
+  }
   const basePrompt = buildBasePrompt(analysis);
   const adapter = getAdapter(platform);
   return adapter.formatPrompt(basePrompt, presets);

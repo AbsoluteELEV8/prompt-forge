@@ -18,4 +18,5 @@ export const PLATFORMS: Platform[] = [
   { id: 'veo3', name: 'Google Veo 3', type: 'video', description: 'Google\'s video generation model' },
   { id: 'nano-banana', name: 'Nano Banana', type: 'both', description: 'Image generation + editing suite' },
   { id: 'grok', name: 'Grok Aurora', type: 'image', description: 'xAI\'s image generation model' },
+  { id: 'gemini', name: 'Google Gemini', type: 'image', description: 'Google Imagen 3 image generation' },
 ];

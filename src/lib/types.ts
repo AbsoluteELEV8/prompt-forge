@@ -19,7 +19,8 @@ export type PlatformId =
   | 'firefly'
   | 'veo3'
   | 'nano-banana'
-  | 'grok';
+  | 'grok'
+  | 'gemini';
 
 export type PlatformType = 'image' | 'video' | 'both';
 
@@ -106,6 +107,7 @@ export interface PlatformAdapter {
 export interface RefineRequest {
   input: string;
   presets: PresetSelection;
+  customPresets?: Partial<Record<PresetCategoryId, Preset[]>>;
   platform: PlatformId;
   answers?: Record<string, string>;
 }

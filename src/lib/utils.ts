@@ -47,6 +47,7 @@ const PLATFORM_DISPLAY_NAMES: Record<PlatformId, string> = {
   veo3: 'Google Veo 3',
   'nano-banana': 'Nano Banana',
   grok: 'Grok Aurora',
+  gemini: 'Google Gemini',
 };
 
 export function formatPlatformName(id: PlatformId): string {

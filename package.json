@@ -3,9 +3,9 @@
   "version": "0.1.0",
   "private": true,
   "description": "Creative prompt engineering app — transforms vague prompts into platform-optimized creative prompts",
-  "author": "Charley Scholz, JLAI",
+  "author": "Charley Scholz, ELEV8",
   "contributors": [
-    "Claude Opus 4.5 (AI)",
+    "Claude 4.6 Opus (AI)",
     "Claude Code (coding assistant)",
     "Cursor (IDE)"
   ],

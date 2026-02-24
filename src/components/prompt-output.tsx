@@ -122,7 +122,7 @@ export function PromptOutput(): React.ReactNode {
                 className="inline-flex items-center gap-1 rounded-md bg-forge-slate-700/40 px-2 py-1 text-xs"
               >
                 <span className="font-medium text-forge-slate-400">{key}:</span>
-                <span className="text-forge-slate-200">{value}</span>
+                <span className="text-forge-slate-200">{String(value)}</span>
               </span>
             ))}
           </div>

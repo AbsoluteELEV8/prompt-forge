@@ -72,7 +72,7 @@ export function Dashboard(): React.ReactNode {
       </header>
 
       {/* Platform Selector Bar */}
-      <div className="border-b border-forge-slate-700/30 bg-forge-slate-900/40">
+      <div className="relative z-20 border-b border-forge-slate-700/30 bg-forge-slate-900/40">
         <div className="mx-auto max-w-[1600px] px-4 py-3 sm:px-6">
           <PlatformSelector />
         </div>

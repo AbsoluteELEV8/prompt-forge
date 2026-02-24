@@ -17,7 +17,7 @@ import { usePromptStore } from '@/store/prompt-store';
 import { PRESET_CATEGORIES } from '@/data/presets';
 import { cn } from '@/lib/utils';
 
-import type { PresetCategoryId } from '@/lib/types';
+import type { Preset, PresetCategoryId } from '@/lib/types';
 
 export function PresetPanel(): React.ReactNode {
   const [expandedCategories, setExpandedCategories] = useState<Set<PresetCategoryId>>(
@@ -69,7 +69,7 @@ interface CategoryAccordionProps {
   categoryId: PresetCategoryId;
   name: string;
   icon: string;
-  presets: { id: string; label: string; description: string }[];
+  presets: Preset[];
   isExpanded: boolean;
   onToggle: (id: PresetCategoryId) => void;
 }
@@ -166,7 +166,7 @@ function CategoryAccordion({
                 aria-pressed={isSelected}
                 title={preset.description}
               >
-                {preset.label}
+                {preset.label ?? preset.name ?? preset.id}
               </button>
             );
           })}
